@@ -3,6 +3,8 @@
 A tiny macOS menubar app that shows how much Claude Code session quota you have
 left, color-coded.
 
+<img width="300" height="403" alt="image" src="https://github.com/user-attachments/assets/2fc91e49-3096-4a2e-85d4-84853dff253e" />
+
 - Menubar text: percentage **used** in your current 5-hour session.
 - **Green** ≤ 60% used &nbsp; • &nbsp; **Orange** > 60% used &nbsp; • &nbsp; **Red** > 80% used
 - Click the icon for: percent used in the 5-hour window with reset countdown,
