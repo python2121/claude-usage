@@ -61,10 +61,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         effect.material = .menu
         effect.state = .active
         effect.blendingMode = .behindWindow
-        effect.wantsLayer = true
-        effect.layer?.cornerRadius = cornerRadius
-        effect.layer?.cornerCurve = .continuous
-        effect.layer?.masksToBounds = true
+        // Round the blur via a resizable mask image — the documented way for
+        // NSVisualEffectView. (layer.cornerRadius on it is unreliable: square
+        // corners poke out during animation/resize.)
+        effect.maskImage = Self.roundedMaskImage(radius: cornerRadius)
 
         // Opacity wash: in light mode a window-background fill over the blur
         // lifts it toward the system panels' solidity. In dark mode the blur is
@@ -75,6 +75,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         tint.boxType = .custom
         tint.titlePosition = .noTitle
         tint.borderWidth = 0
+        // Round the box to match the container. Relying on the effect view's
+        // masksToBounds to clip this subview is unreliable (square corners pop
+        // out during the open/resize animation), so the box rounds itself.
+        tint.cornerRadius = cornerRadius
         tint.fillColor = NSColor(name: nil) { appearance in
             appearance.bestMatch(from: [.aqua, .darkAqua]) == .darkAqua
                 ? .clear
@@ -113,6 +117,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         panel.animationBehavior = .none           // we animate manually
         panel.isReleasedWhenClosed = false
         panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .stationary]
+    }
+
+    /// A resizable rounded-rect mask: the center stretches and the corners stay
+    /// fixed (cap insets), so one image rounds the effect view at any size.
+    private static func roundedMaskImage(radius: CGFloat) -> NSImage {
+        let edge = radius * 2 + 1
+        let image = NSImage(size: NSSize(width: edge, height: edge), flipped: false) { rect in
+            NSColor.black.setFill()
+            NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius).fill()
+            return true
+        }
+        image.capInsets = NSEdgeInsets(top: radius, left: radius, bottom: radius, right: radius)
+        image.resizingMode = .stretch
+        return image
     }
 
     // MARK: Show / hide
