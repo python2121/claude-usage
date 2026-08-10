@@ -16,7 +16,7 @@ APP_DIR="${APP_NAME}.app"
 cd "$(dirname "$0")"
 
 # Commit this build was produced from. Baked into Info.plist (GitCommit) so the
-# running app can ask GitHub whether jakeonrails/claude-usage/main has moved
+# running app can ask GitHub whether python2121/claude-usage/main has moved
 # ahead of it (the in-app "update available" check). Empty for non-git builds —
 # UpdateChecker treats an empty value as "dev build, don't check".
 GIT_COMMIT="$(git rev-parse HEAD 2>/dev/null || true)"

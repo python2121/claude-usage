@@ -89,7 +89,7 @@ gh release create vX.Y.Z ClaudeUsage-vX.Y.Z.dmg \
 Checkpoint:
 
 ```bash
-curl -s https://api.github.com/repos/jakeonrails/claude-usage/releases/latest | jq -r .tag_name
+curl -s https://api.github.com/repos/python2121/claude-usage/releases/latest | jq -r .tag_name
 ```
 
 must print `vX.Y.Z`. Release-build users see the update dialog within an
@@ -98,7 +98,7 @@ hour (checker polls hourly).
 ## 6. Post-release
 
 - Verify the Pages site shows the new version:
-  https://jakeonrails.github.io/claude-usage/ (CDN may lag a minute).
+  https://python2121.github.io/claude-usage/ (CDN may lag a minute).
 - The `release-linux.yml` workflow fires on publish and attaches the static
   Linux CLI (`claude-usage-linux-x86_64`) to the release automatically —
   check the Actions tab if it's missing after a few minutes. Nothing to do

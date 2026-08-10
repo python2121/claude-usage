@@ -5,9 +5,9 @@ left, color-coded. Also runs on Linux: the same package builds a headless
 `claude-usage` CLI plus a KDE Plasma panel widget — see
 [Linux (KDE Plasma)](#linux-kde-plasma).
 
-**[Download the latest release](https://github.com/jakeonrails/claude-usage/releases/latest)**
+**[Download the latest release](https://github.com/python2121/claude-usage/releases/latest)**
 (DMG — drag into Applications), or see the
-[project page](https://jakeonrails.github.io/claude-usage/). The app is
+[project page](https://python2121.github.io/claude-usage/). The app is
 self-signed, so the first launch needs a one-time approval: open the app, then
 System Settings → Privacy & Security → **Open Anyway** (or clear quarantine
 yourself with `xattr -cr /Applications/ClaudeUsage.app`). To have it start at
@@ -297,7 +297,7 @@ x86_64 distro — unlike the macOS app there's no signing constraint):
 
 ```bash
 curl -fLo ~/.local/bin/claude-usage \
-  https://github.com/jakeonrails/claude-usage/releases/latest/download/claude-usage-linux-x86_64
+  https://github.com/python2121/claude-usage/releases/latest/download/claude-usage-linux-x86_64
 chmod +x ~/.local/bin/claude-usage
 ```
 

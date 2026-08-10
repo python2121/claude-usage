@@ -177,7 +177,7 @@ final class UpdateCheckerTests: XCTestCase {
           "ahead_by": \(aheadBy),
           "behind_by": 0,
           "total_commits": \(aheadBy),
-          "url": "https://api.github.com/repos/jakeonrails/claude-usage/compare/base...main"
+          "url": "https://api.github.com/repos/python2121/claude-usage/compare/base...main"
         }
         """.data(using: .utf8)!
     }
@@ -206,17 +206,17 @@ final class UpdateCheckerTests: XCTestCase {
             ,
             {
               "name": "ClaudeUsage-\(tag).dmg",
-              "browser_download_url": "https://github.com/jakeonrails/claude-usage/releases/download/\(tag)/ClaudeUsage-\(tag).dmg"
+              "browser_download_url": "https://github.com/python2121/claude-usage/releases/download/\(tag)/ClaudeUsage-\(tag).dmg"
             }
             """ : ""
         return """
         {
           "tag_name": "\(tag)",
-          "html_url": "https://github.com/jakeonrails/claude-usage/releases/tag/\(tag)",
+          "html_url": "https://github.com/python2121/claude-usage/releases/tag/\(tag)",
           "assets": [
             {
               "name": "ClaudeUsage-\(tag)-source.zip",
-              "browser_download_url": "https://github.com/jakeonrails/claude-usage/archive/\(tag).zip"
+              "browser_download_url": "https://github.com/python2121/claude-usage/archive/\(tag).zip"
             }\(dmgAssetJSON)
           ]
         }
@@ -227,7 +227,7 @@ final class UpdateCheckerTests: XCTestCase {
         let result = try JSONDecoder().decode(
             UpdateChecker.ReleaseResult.self, from: releaseJSON(tag: "v1.2.0"))
         XCTAssertEqual(result.tag_name, "v1.2.0")
-        XCTAssertEqual(result.html_url, "https://github.com/jakeonrails/claude-usage/releases/tag/v1.2.0")
+        XCTAssertEqual(result.html_url, "https://github.com/python2121/claude-usage/releases/tag/v1.2.0")
         XCTAssertEqual(result.assets.count, 2)
     }
 
@@ -235,14 +235,14 @@ final class UpdateCheckerTests: XCTestCase {
         let result = try JSONDecoder().decode(
             UpdateChecker.ReleaseResult.self, from: releaseJSON(tag: "v1.2.0"))
         XCTAssertEqual(UpdateChecker.downloadURL(from: result)?.absoluteString,
-                       "https://github.com/jakeonrails/claude-usage/releases/download/v1.2.0/ClaudeUsage-v1.2.0.dmg")
+                       "https://github.com/python2121/claude-usage/releases/download/v1.2.0/ClaudeUsage-v1.2.0.dmg")
     }
 
     func testDownloadURLFallsBackToHtmlURLWithoutDmgAsset() throws {
         let result = try JSONDecoder().decode(
             UpdateChecker.ReleaseResult.self, from: releaseJSON(tag: "v1.2.0", includeDmg: false))
         XCTAssertEqual(UpdateChecker.downloadURL(from: result)?.absoluteString,
-                       "https://github.com/jakeonrails/claude-usage/releases/tag/v1.2.0")
+                       "https://github.com/python2121/claude-usage/releases/tag/v1.2.0")
     }
 
     // MARK: evaluateRelease — current tag + latest release → alert state
@@ -254,7 +254,7 @@ final class UpdateCheckerTests: XCTestCase {
         XCTAssertEqual(decision, .release(
             tag: "v1.2.0",
             currentTag: "v1.0.0",
-            downloadURL: URL(string: "https://github.com/jakeonrails/claude-usage/releases/download/v1.2.0/ClaudeUsage-v1.2.0.dmg")!
+            downloadURL: URL(string: "https://github.com/python2121/claude-usage/releases/download/v1.2.0/ClaudeUsage-v1.2.0.dmg")!
         ))
     }
 
@@ -265,7 +265,7 @@ final class UpdateCheckerTests: XCTestCase {
         XCTAssertEqual(decision, .release(
             tag: "v1.2.0",
             currentTag: "v1.0.0",
-            downloadURL: URL(string: "https://github.com/jakeonrails/claude-usage/releases/tag/v1.2.0")!
+            downloadURL: URL(string: "https://github.com/python2121/claude-usage/releases/tag/v1.2.0")!
         ))
     }
 

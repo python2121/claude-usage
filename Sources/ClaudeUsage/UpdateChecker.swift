@@ -35,7 +35,7 @@ final class UpdateChecker: ObservableObject {
 
     @Published private(set) var available: Available?
 
-    private let repo = "jakeonrails/claude-usage"
+    private let repo = "python2121/claude-usage"
     private let branch = "main"
     // Shared by both channels. Unauthenticated GitHub allows 60 req/hr/IP;
     // 1 req/hr leaves comfortable headroom even with several machines polling.

@@ -22,9 +22,9 @@ windows from local JSONL logs instead.
 ```
 
 If that path doesn't exist, the app isn't installed — tell the user to
-download the DMG from https://github.com/jakeonrails/claude-usage/releases/latest
+download the DMG from https://github.com/python2121/claude-usage/releases/latest
 (drag into Applications), or build from source with `./install.sh` from
-https://github.com/jakeonrails/claude-usage.
+https://github.com/python2121/claude-usage.
 
 ## Why polling is safe
 
